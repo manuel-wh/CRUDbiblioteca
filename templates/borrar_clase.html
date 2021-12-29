@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clases - Borrar
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data">
+    
+        <!-- Eltoken siempre debe ir  -->
+        {% csrf_token %}
+        <h2>¿Desea eliminar el registro de {{ object.titulo }} ?</h2>
+    
+        <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+        <a class="btn btn-default" href="{% url 'biblioteca:index_clase'  %}">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

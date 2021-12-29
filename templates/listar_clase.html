@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Libros
+{% endblock %}
+
+{% block content %}
+<h1>Biblioteca</h1>
+<br>
+<a class="btn btn-primary" href="{% url 'biblioteca:agregar_clase' %}">Agregar Libro</a>
+<hr>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Titulo</td>
+            <td>Editor</td>
+            <td>Fecha de publicación</td>
+            <td>Portada</td>
+            <td>acciones</td>
+        </tr>
+    </thead>
+    <tbody class="">
+        {% if object_list %}
+            {% for libro in object_list %}
+                <tr>
+                    <td>{{ libro.id }}</td>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.editor }}</td>
+                    <td>{{ libro.fecha_publicacion }}</td>
+                    <td><img src="{{ libro.portada.url }}" alt="asdfas" height="100px" width="auto"></td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'biblioteca:editar_clase' libro.id %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'biblioteca:eliminar_clase' libro.id %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+                <h3>No hay libros registrados</h3>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+
